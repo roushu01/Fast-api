@@ -21,13 +21,15 @@ def create_user(user: User):
 @router.get("/user")
 def get_users():
     users = user_collection.find()
-    results=[]
+    results = []
+
     for user in users:
         results.append({
-            "id":str(user["_id"]),
-            "name":user["name"],
-            "email":user["email"]
+            "id": str(user["_id"]),
+            "name": user.get("name"),
+            "email": user.get("email")
         })
+
     return results
 
 
